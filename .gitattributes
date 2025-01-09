@@ -1,0 +1,2 @@
+*.ts linguist-language=go
+*.tsx linguist-language=go
