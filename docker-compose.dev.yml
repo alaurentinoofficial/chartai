@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+  postgres:
+    image: postgres:14.5
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: chartai
+    volumes:
+      - postgres:/data/postgres
+    ports: ["5432:5432"]
+    networks: [ api-network ]
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    networks: [ api-network ]
+
+networks:
+  api-network:
+    driver: bridge
+
+volumes:
+  postgres:

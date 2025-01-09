@@ -1,0 +1,20 @@
+version: "2"
+sql:
+  - engine: "postgresql"
+    schema: "infrastructure/postgresdb/sql/migrations"
+    queries: "infrastructure/postgresdb/sql/queries"
+    gen:
+      go:
+        package: "postgresdb_sql"
+        out: "infrastructure/postgresdb/sql"
+        overrides:
+          - db_type: "pg_catalog.numeric"
+            go_type:
+              import: "github.com/cockroachdb/apd/v3"
+              type: "Decimal"
+          - db_type: "pg_catalog.numeric"
+            go_type:
+              import: "github.com/cockroachdb/apd/v3"
+              type: "Decimal"
+              pointer: true
+            nullable: true
